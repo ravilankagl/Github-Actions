@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [24.11.1]
 
     steps:
     - uses: actions/checkout@v4
@@ -25,5 +25,6 @@ jobs:
 
     - name: Build
       run: |        # | is used to run multiple commands in teh "run:"
+        cd app
         npm install
         grunt
