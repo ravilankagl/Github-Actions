@@ -1,0 +1,29 @@
+name: NodeJS CICD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: Agent-1    #Defining hostname
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+ #  - uses: ravilankagl/Github-Actions    #repository ravilankagl/Github-Actions
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}  # the special variable ${{ matrix.node-version }} automatically contains the current value from the matrix (16 in the first run, 18 in the second, etc.).
+
+    - name: Build
+      run: |        # | is used to run multiple commands in teh "run:"
+        npm install
+        grunt
