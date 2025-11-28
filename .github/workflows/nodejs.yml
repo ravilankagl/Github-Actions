@@ -25,6 +25,5 @@ jobs:
 
     - name: Build
       run: |        # | is used to run multiple commands in teh "run:"
-        cd app
         npm install
         grunt
